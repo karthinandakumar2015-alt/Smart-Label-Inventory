@@ -1,0 +1,442 @@
+:root {
+    /* Color Palette */
+    --primary-light: #51A1AC;
+    --primary-dark: #042F3E;
+    --secondary-light: #F4F4F4;
+    --secondary-dark: #414042;
+    --accent: #FF6B6B;
+    /* For alerts/battery low */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    --gradient-glass: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+    /* Typography */
+    --font-heading: 'Avenir', 'Segoe UI', 'Roboto', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Shadows & Glass */
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+    --backdrop-blur: blur(12px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    /* Gray paperish background with subtle fold lines */
+    background-color: #d1d1d1;
+    background-image:
+        /* Vertical fold down the center */
+        linear-gradient(90deg,
+            transparent 49.5%,
+            rgba(0, 0, 0, 0.06) 49.8%,
+            rgba(255, 255, 255, 0.08) 50.2%,
+            transparent 50.5%),
+        /* Horizontal fold across the middle */
+        linear-gradient(180deg,
+            transparent 49.5%,
+            rgba(0, 0, 0, 0.05) 49.8%,
+            rgba(255, 255, 255, 0.07) 50.2%,
+            transparent 50.5%),
+        /* Diagonal crease top-left to bottom-right */
+        linear-gradient(135deg,
+            transparent 30%,
+            rgba(0, 0, 0, 0.03) 30.2%,
+            rgba(255, 255, 255, 0.04) 30.5%,
+            transparent 31%),
+        /* Diagonal crease bottom-left to top-right */
+        linear-gradient(45deg,
+            transparent 65%,
+            rgba(0, 0, 0, 0.025) 65.2%,
+            rgba(255, 255, 255, 0.035) 65.5%,
+            transparent 66%),
+        /* Original paper texture */
+        url("https://www.transparenttextures.com/patterns/p6-polyester.png");
+    background-attachment: fixed;
+    color: var(--secondary-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-family: var(--font-body);
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary-dark);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-light);
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    border: var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-md);
+}
+
+.input-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(81, 161, 172, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+
+
+/* Map Style */
+#map {
+    height: 300px;
+    width: 100%;
+    border-radius: 12px;
+    margin-top: var(--spacing-sm);
+}
+
+/* --- Dashboard Slideshow --- */
+.featured-slideshow {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: #f0f0f0;
+}
+
+.slideshow-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slideshow-img.active {
+    opacity: 1;
+}
+
+.slideshow-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 2rem;
+    color: white;
+    z-index: 2;
+}
+
+.slideshow-content h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.slideshow-content p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Search Bar --- */
+.search-container {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2196F3;
+    /* Set to Blue */
+    font-size: 1.2rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+    border: 2px solid #2196F3;
+    /* Set to Blue */
+    border-radius: 50px;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 20px rgba(33, 150, 243, 0.1);
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #1976D2;
+    /* Darker blue on focus */
+    box-shadow: 0 10px 25px rgba(33, 150, 243, 0.2);
+    transform: translateY(-2px);
+}
+
+/* --- Autocomplete Suggestions Dropdown --- */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.95);
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(4, 47, 62, 0.3);
+    list-style: none;
+    padding: 1rem;
+    z-index: 1001;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.search-suggestions:not(.hidden) {
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@keyframes suggestFadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.search-suggestions.hidden {
+    display: none;
+}
+
+.search-suggestions li {
+    padding: 0.75rem 1.5rem 0.75rem 3.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--primary-dark);
+    transition: background 0.15s, color 0.15s;
+    border-bottom: 1px solid #f0f0f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-suggestions li:last-child {
+    border-bottom: none;
+}
+
+.search-suggestions li:hover,
+.search-suggestions li.active {
+    background: linear-gradient(90deg, #e3f2fd, #f0f9ff);
+    color: #1565C0;
+}
+
+.search-suggestions li .suggest-icon {
+    margin-right: 0.6rem;
+    color: #2196F3;
+    opacity: 0.7;
+}
+
+.search-suggestions li mark {
+    background: transparent;
+    color: #1565C0;
+    font-weight: 700;
+}
+
+.search-suggestions li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- Save Info Modal Enhancements --- */
+.save-info-modal {
+    background: rgba(4, 47, 62, 0.4) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+.pulse-primary {
+    animation: btnPulse 2s infinite;
+}
+
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(4, 47, 62, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(4, 47, 62, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(4, 47, 62, 0);
+    }
+}
+
+/* ===== Paper Wrinkle Effects ===== */
+
+/* Individual wrinkle line on artifact cards */
+.paper-wrinkle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    animation: wrinkleFadeIn 0.8s ease forwards;
+}
+
+@keyframes wrinkleFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Wrinkle line — a thin, subtle diagonal crease */
+.paper-wrinkle-line {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.04) 35%,
+            rgba(255, 255, 255, 0.07) 50%,
+            rgba(0, 0, 0, 0.03) 65%,
+            transparent 100%);
+    border-radius: 50%;
+}
+
+/* Artifact card needs relative positioning for wrinkles */
+.artifact-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle page-level wrinkle overlay */
+.page-wrinkle-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+}
+
+.page-wrinkle-overlay .wrinkle-crease {
+    position: absolute;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.03) 40%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(0, 0, 0, 0.02) 60%,
+            transparent 100%);
+    border-radius: 50%;
+}
